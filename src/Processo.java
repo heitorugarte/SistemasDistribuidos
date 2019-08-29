@@ -20,7 +20,7 @@ public class Processo {
 		this.antecessor = antecessor;
 	}
 
-	public int getId() {
+	public int getIdProcesso() {
 		return id;
 	}
 
@@ -54,12 +54,12 @@ public class Processo {
 
 	public String ToString() {
 		if (sucessor != null && antecessor != null) {
-			return "Id: " + this.id + "\nAtivo: " + this.ativo + "\nId Sucessor: " + this.sucessor.getId()
-					+ "\nId Antecessor: " + this.antecessor.getId();
+			return "Id: " + this.id + "\nAtivo: " + this.ativo + "\nId Sucessor: " + this.sucessor.getIdProcesso()
+					+ "\nId Antecessor: " + this.antecessor.getIdProcesso();
 		} else if (this.antecessor == null && this.sucessor != null) {
-			return "Id: " + this.id + "\nId sucessor: " + this.sucessor.getId() + "\nProcesso inicial";
+			return "Id: " + this.id + "\nId sucessor: " + this.sucessor.getIdProcesso() + "\nProcesso inicial";
 		} else {
-			return "Id: " + this.id + "\nId Antecessor: " + this.antecessor.getId() + "\nProcesso final";
+			return "Id: " + this.id + "\nId Antecessor: " + this.antecessor.getIdProcesso() + "\nProcesso final";
 		}
 	}
 }
