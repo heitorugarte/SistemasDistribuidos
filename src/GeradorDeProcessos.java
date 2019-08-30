@@ -1,10 +1,6 @@
 public class GeradorDeProcessos extends Thread {
 
 	private long tempoParaGerar = 30000;
-	
-	public GeradorDeProcessos() {
-
-	}
 
 	public void run() {
 		int id = 0;
