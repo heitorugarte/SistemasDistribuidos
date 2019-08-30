@@ -1,23 +1,29 @@
 
-public class Processo {
+public class Processo extends Thread {
 
 	private int id;
-	private boolean ativo;
-	private Processo sucessor, antecessor;
+	private boolean ativo, isCoordenador;
+	private Processo sucessor, antecessor, coordenador;
 
 	public Processo(int id) {
 		this.id = id;
+		this.isCoordenador = false;
+		this.coordenador = null;
 	}
 
 	public Processo(int id, Processo antecessor) {
 		this.id = id;
 		this.antecessor = antecessor;
+		this.isCoordenador = false;
+		this.coordenador = null;
 	}
 
 	public Processo(int id, Processo sucessor, Processo antecessor) {
 		this.id = id;
 		this.sucessor = sucessor;
 		this.antecessor = antecessor;
+		this.isCoordenador = false;
+		this.coordenador = null;
 	}
 
 	public int getIdProcesso() {
@@ -60,6 +66,27 @@ public class Processo {
 			return "Id: " + this.id + "\nId sucessor: " + this.sucessor.getIdProcesso() + "\nProcesso inicial";
 		} else {
 			return "Id: " + this.id + "\nId Antecessor: " + this.antecessor.getIdProcesso() + "\nProcesso final";
+		}
+	}
+
+	public boolean fazerRequisicao() {
+		if (this.coordenador.isAtivo()) {
+			return true;
+		}
+		return false;
+	}
+
+	public void run() {
+		System.out.println("O processo " + this.getIdProcesso() + " está executando.");
+		while (true) {
+			try {
+				if (!fazerRequisicao()) {
+					//Eleicao
+				}
+				Thread.sleep(25000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
